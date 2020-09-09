@@ -1,5 +1,8 @@
-var authy = require("authy")("lAI8vE769tjZYzAidxBVn9o8eqmvWwWh");
+var authy = require("authy")("bMjyyNFKYMsOyjEQY5J9NUe8KC6S039f");
 const Profiles = require("../../models/profiles");
+
+
+
 
 let handleSendOtp = ({ email, phoneNo, countryCode }) => {
   return new Promise(function(resolve, reject) {
@@ -39,7 +42,7 @@ let handleSendOtp = ({ email, phoneNo, countryCode }) => {
 let handleAddUser = ({ name, email, password, otp, phone, authy_id }) => {
   return new Promise((resolve, reject) => {
     authy.verify(authy_id, (token = otp), async function(err, authRes) {
-      if (!err) {
+      if (err) {
         console.log("Error =======", err);
         reject(err);
       } else {
